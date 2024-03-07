@@ -1,5 +1,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <conio.h>
 #include <iostream>
 
 using namespace std;
@@ -45,5 +46,6 @@ int main(void) {
     }
 
     glfwTerminate();
-    return 0;
+    
+    _getch();
 }
