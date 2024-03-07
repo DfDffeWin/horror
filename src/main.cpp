@@ -2,38 +2,38 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-int main(void)
-{
-    GLFWwindow* window;
+using namespace std;
 
-    /* Initialize the library */
-    if (!glfwInit())
+int main(void) {
+
+    if (!glfwInit()) {
+        cout << "glfwInit failed" << endl;
         return -1;
+    }
 
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
-    {
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    GLFWwindow* window = glfwCreateWindow(640, 480, "Hello World", nullptr, nullptr);
+    if (!window) {
         glfwTerminate();
         return -1;
     }
 
-    /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
-	if(!gladLoadGL())
-	{
-		std::cout << "can't load glad" << std::endl;
+	if(!gladLoadGL()) {
+		cout << "can't load glad" << endl;
 		return -1;
 	}
 
-	std::cout << GLVersion.major << GLVersion.minor << std::endl;
+    cout << "Renderer: " << glGetString(GL_RENDERER);
+    cout << "OpenGL: " << glGetString(GL_VERSION);
 	
 	glClearColor(0, 1, 0, 1);
 	
-    /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
-    {
+    while (!glfwWindowShouldClose(window)) {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
